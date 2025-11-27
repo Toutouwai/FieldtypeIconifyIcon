@@ -1,0 +1,21 @@
+[class*="fa-iconify--"] {
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
+  height: 20px;
+  min-width: 16px;
+  background-color: currentColor;
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+  mask-size: contain;
+  -webkit-mask-size: contain; }
+
+.PageListItem [class*="fa-iconify--"], .ui-menu-item [class*="fa-iconify--"] {
+  /*top:0;*/
+  height: 16px;
+  width: 16px;
+  box-sizing: content-box; }
+
+h1 [class*="fa-iconify--"] {
+  height: 32px;
+  width: 32px; }

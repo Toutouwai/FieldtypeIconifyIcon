@@ -1,0 +1,21 @@
+.InputfieldIconifyIcon {
+	.iii-input { margin-top:15px; display:none; }
+	.iii-results { display:none; flex-wrap:wrap; gap:15px; padding-top:15px; padding-bottom:15px; border-bottom:1px solid #d9e1ea;
+		.iii-choose-notice { width:100%; }
+		.iii-error-notice { color:red; }
+		img { width:40px; height:40px; object-fit:contain; cursor:pointer; }
+	}
+	.iii-pagination { display:flex; width:100%; justify-content:space-between; }
+	.iii-selection { display:none; gap:15px; align-items:center; }
+	.iii-selected { margin-top:15px; background-size:contain; background-position:center; background-repeat:no-repeat; }
+	.iii-clear { margin-top:15px; padding:0; border:0; background-color:transparent; cursor:pointer; font-size:14px; color:#e83561;
+		&:hover { color:#d21846; }
+	}
+	.iii-no-selection { margin-top:15px; }
+	.iii-container {
+		&.has-selection {
+			.iii-selection { display:flex; }
+			.iii-no-selection { display:none; }
+		}
+	}
+}

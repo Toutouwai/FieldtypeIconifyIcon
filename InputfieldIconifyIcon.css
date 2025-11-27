@@ -1,0 +1,48 @@
+.InputfieldIconifyIcon .iii-input {
+  margin-top: 15px;
+  display: none; }
+.InputfieldIconifyIcon .iii-results {
+  display: none;
+  flex-wrap: wrap;
+  gap: 15px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #d9e1ea; }
+  .InputfieldIconifyIcon .iii-results .iii-choose-notice {
+    width: 100%; }
+  .InputfieldIconifyIcon .iii-results .iii-error-notice {
+    color: red; }
+  .InputfieldIconifyIcon .iii-results img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    cursor: pointer; }
+.InputfieldIconifyIcon .iii-pagination {
+  display: flex;
+  width: 100%;
+  justify-content: space-between; }
+.InputfieldIconifyIcon .iii-selection {
+  display: none;
+  gap: 15px;
+  align-items: center; }
+.InputfieldIconifyIcon .iii-selected {
+  margin-top: 15px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat; }
+.InputfieldIconifyIcon .iii-clear {
+  margin-top: 15px;
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 14px;
+  color: #e83561; }
+  .InputfieldIconifyIcon .iii-clear:hover {
+    color: #d21846; }
+.InputfieldIconifyIcon .iii-no-selection {
+  margin-top: 15px; }
+.InputfieldIconifyIcon .iii-container.has-selection .iii-selection {
+  display: flex; }
+.InputfieldIconifyIcon .iii-container.has-selection .iii-no-selection {
+  display: none; }
