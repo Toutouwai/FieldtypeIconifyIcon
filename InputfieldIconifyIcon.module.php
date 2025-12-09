@@ -73,6 +73,7 @@ class InputfieldIconifyIcon extends InputfieldText implements InputfieldHasTextV
 	 */
 	public function downloadIcon($iconifyIcon) {
 		$files = $this->wire()->files;
+		$validator = $this->wire()->modules->get('FileValidatorSvgSanitizer');
 		$destinationFilename = $this->getIconUrl($iconifyIcon, true);
 		// Download SVG from Iconify if it doesn't exist
 		if(!is_file($destinationFilename)) {
@@ -92,6 +93,12 @@ class InputfieldIconifyIcon extends InputfieldText implements InputfieldHasTextV
 				// Create the destination directory if it doesn't exist
 				if(!is_dir($this->localBasePath . $setAndName['set'])) {
 					$files->mkdir($this->localBasePath . $setAndName['set'], true);
+				}
+				// Validate the SVG file while it is still in the temp directory
+				$valid = $validator->isValid($tempFilename);
+				if($valid === false) {
+					$this->wire()->error(sprintf($this->_('File %s failed validation and has not been saved.'), $setAndName['name'] . '.svg'));
+					return false;
 				}
 				// Copy the file from the temp directory to the destination directory
 				return $files->copy($tempFilename, $destinationFilename);
