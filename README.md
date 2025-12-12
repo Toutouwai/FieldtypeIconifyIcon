@@ -22,7 +22,7 @@ Enter the icon set prefixes into the config field separated by commas.
 
 ## Using the inputfield
 
-Type an icon name (or some of an icon name) into the search input and a list of matching icons will be displayed. You can hover on an icon in the results to see the set prefix and name of the icon. Click on an icon to select it.
+Type an icon name (or part of an icon name) into the search input and a list of matching icons will be displayed. You can hover on an icon in the results to see the set prefix and name of the icon. Click on an icon to select it.
 
 If you have not defined any icon set prefixes in the field config then you can limit the search to particular icon sets by entering icon set prefixes into the search input before a colon. For example, entering "mingcute,tabler:flower" would search for icons with "flower" in their name from the "mingcute" and "tabler" icon sets.
 
