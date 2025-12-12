@@ -4,6 +4,8 @@ A bundle of fieldtype, inputfield, and admin helper modules for searching and di
 
 Requires the FileValidatorSvgSanitizer module.
 
+Be sure to abide by the license terms of any icons you use. The license of each icon set is viewable on the [Iconify](https://icon-sets.iconify.design/) website.
+
 ![Screencast](https://github.com/user-attachments/assets/369778af-2bca-4107-9f98-4feb0bc70e7e)
 
 # Fieldtype and inputfield modules
