@@ -8,11 +8,11 @@ Requires the FileValidatorSvgSanitizer module.
 
 # Fieldtype and inputfield modules
 
-When these modules are installed you can create a field of type IconifyIcon.
+When the FieldtypeIconifyIcon and InputfieldIconifyIcon modules are installed you can create a field of type IconifyIcon.
 
 ## Field config options
 
-**Iconify icon set prefixes:** In most cases you will want to define one or more icon set prefixes for the field, to limit the search to those particular icon sets. This is because the number of icons available through Iconify vastly exceeds the maximum of 999 results that can be returned via the Iconify API search.
+**Iconify icon set prefixes:** In most cases you will want to define one or more icon set prefixes for the field, to limit the search to those particular icon sets. This is because the number of icons available through Iconify vastly exceeds the maximum of 999 results that can be returned via the Iconify search API.
 
 You can find the prefix of an icon set from its URL by browsing at [https://icon-sets.iconify.design/](https://icon-sets.iconify.design/). For example, the prefix of the icon set browsable at https://icon-sets.iconify.design/mdi/ is "mdi".
 
@@ -26,11 +26,11 @@ Type an icon name (or some of an icon name) into the search input and a list of 
 
 If you have not defined any icon set prefixes in the field config then you can limit the search to particular icon sets by entering icon set prefixes into the search input before a colon. For example, entering "mingcute,tabler:flower" would search for icons with "flower" in their name from the "mingcute" and "tabler" icon sets.
 
-When the page is saved the selected icon will be downloaded from Iconify, sanitized via the FileValidatorSvgSanitizer module, and stored within the `/site/assets/iconify/` directory. Icons are not automatically deleted from this directory if they are no longer used in a page value, but if you want to clean up this directory at any point you can delete it and icons will be automatically re-downloaded when they are next needed.
+When the page is saved the selected icon is downloaded from Iconify, sanitized via the FileValidatorSvgSanitizer module, and stored within the `/site/assets/iconify/` directory. Icons are not automatically deleted from this directory if they are no longer used in a page value, but if you want to clean up this directory at any point you can delete it and icons will be automatically re-downloaded when they are next needed.
 
 ## The field value
 
-The formatted value of a IconifyIcon field is an object with the following properties:
+The formatted value of a IconifyIcon field is a WireData object with the following properties:
 
 - set: The icon set prefix
 - name: The icon name
