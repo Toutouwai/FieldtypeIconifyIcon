@@ -3,7 +3,7 @@
 $info = array(
 	'title' => 'Iconify Icon',
 	'summary' => 'A fieldtype for storing an Iconify icon.',
-	'version' => '0.1.1',
+	'version' => '0.1.2',
 	'author' => 'Robin Sallis',
 	'href' => 'https://github.com/Toutouwai/IconifyIcon',
 	'icon' => 'puzzle-piece',

@@ -125,7 +125,7 @@ class InputfieldIconifyIcon extends InputfieldText implements InputfieldHasTextV
 			$containerClass = ' has-selection';
 			$this->downloadIcon($this->value);
 			$setAndName = $this->getSetAndName($this->value);
-			$title = "{$setAndName['set']}/{$setAndName['name']}";
+			$title = "{$setAndName['set']}:{$setAndName['name']}";
 			$iconUrl = $this->getIconUrl($this->value);
 			$previewStyle .= "background-image:url($iconUrl);";
 		}

@@ -1,6 +1,6 @@
 <?php namespace ProcessWire;
 
-class FieldtypeIconifyIcon extends FieldtypeText {
+class FieldtypeIconifyIcon extends Fieldtype {
 
 	/**
 	 * Return the associated inputfield
@@ -14,13 +14,15 @@ class FieldtypeIconifyIcon extends FieldtypeText {
 	}
 
 	/**
-	 * Fieldtype does not support textformatters
+	 * Sanitize value for storage
 	 *
-	 * @param bool|null
-	 * @return bool
+	 * @param Page $page
+	 * @param Field $field
+	 * @param string $value
+	 * @return string
 	 */
-	protected function allowTextFormatters($allow = null) {
-		return false;
+	public function sanitizeValue(Page $page, Field $field, $value) {
+		return $value;
 	}
 
 	/**
@@ -56,6 +58,21 @@ class FieldtypeIconifyIcon extends FieldtypeText {
 			'svg' => $this->wire()->files->fileGetContents($path),
 		];
 		return WireData($data);
+	}
+
+	/**
+	 * Database schema
+	 *
+	 * @param Field $field
+	 * @return array
+	 */
+	public function getDatabaseSchema(Field $field) {
+		$schema = parent::getDatabaseSchema($field);
+		$len = $this->wire()->database->getMaxIndexLength();
+		$schema['data'] = 'text NOT NULL';
+		$schema['keys']['data_exact'] = "KEY `data_exact` (`data`($len))";
+		$schema['keys']['data'] = 'FULLTEXT KEY `data` (`data`)';
+		return $schema;
 	}
 
 }

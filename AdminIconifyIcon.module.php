@@ -26,7 +26,7 @@ class AdminIconifyIcon extends WireData implements Module, ConfigurableModule {
 		$this->addHookAfter('ProcessField::buildEditForm, ProcessTemplate::buildEditForm', $this, 'afterBuildEditForm');
 		$this->addHookBefore('Fields::save', $this, 'fieldSaved');
 		$this->addHookBefore('Templates::save', $this, 'templateSaved');
-		$this->addHookAfter('Pages::saveReady', $this, 'afterPagesSaveReady');
+		$this->addHookAfter('Pages::saved', $this, 'afterPagesSaved');
 	}
 
 	/**
@@ -112,15 +112,16 @@ class AdminIconifyIcon extends WireData implements Module, ConfigurableModule {
 	}
 
 	/**
-	 * After Pages::saveReady
+	 * After Pages::saved
 	 *
 	 * @param HookEvent $event
 	 */
-	protected function afterPagesSaveReady(HookEvent $event) {
+	protected function afterPagesSaved(HookEvent $event) {
 		/** @var Page $page */
 		$page = $event->arguments(0);
+		$changes = $event->arguments(1);
 		if($page->template != 'admin') return;
-		if(!$page->page_icon || !$page->isChanged('page_icon')) return;
+		if(empty($changes['page_icon'])) return;
 		if(substr($page->page_icon, 0, 9) !== 'iconify--') return;
 		$this->generateCSS();
 	}
@@ -142,20 +143,24 @@ class AdminIconifyIcon extends WireData implements Module, ConfigurableModule {
 	protected function generateCSS() {
 		$config = $this->wire()->config;
 		$files = $this->wire()->files;
+		$fields = $this->wire()->fields;
+		$templates = $this->wire()->templates;
 		/** @var InputfieldIconifyIcon $iii */
 		$iii = $this->wire()->modules->get('InputfieldIconifyIcon');
 		$icons = [];
-		foreach($this->wire()->templates->find("iconifyIcon!=''") as $template) {
+		foreach($templates->find("iconifyIcon!=''") as $template) {
 			$icons[$template->iconifyIcon] = $template->iconifyIcon;
 		}
-		foreach($this->wire()->fields->find("iconifyIcon!=''") as $field) {
+		foreach($fields->find("iconifyIcon!=''") as $field) {
 			$icons[$field->iconifyIcon] = $field->iconifyIcon;
 		}
-		$iconedPages = $this->wire()->pages->find("template=admin, page_icon!='', include=unpublished, check_access=0");
-		foreach($iconedPages as $p) {
-			// Skip any icons that are not Iconify icons
-			if(substr($p->page_icon, 0, 9) !== 'iconify--') continue;
-			$icons[$p->page_icon] = $p->page_icon;
+		if($fields->get('page_icon')) {
+			$iconedPages = $this->wire()->pages->find("template=admin, page_icon!='', include=unpublished, check_access=0");
+			foreach($iconedPages as $p) {
+				// Skip any icons that are not Iconify icons
+				if(substr($p->page_icon, 0, 9) !== 'iconify--') continue;
+				$icons[$p->page_icon] = $p->page_icon;
+			}
 		}
 		$css = '';
 		foreach($icons as $iconifyIcon) {
