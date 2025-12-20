@@ -36,6 +36,7 @@ class FieldtypeIconifyIcon extends Fieldtype {
 	public function ___formatValue(Page $page, Field $field, $value) {
 		$config = $this->wire()->config;
 		$value = (string) $value;
+		if(!$value) return WireData([]);
 
 		/** @var InputfieldIconifyIcon $iii */
 		$iii = $this->wire()->modules->get('InputfieldIconifyIcon');
