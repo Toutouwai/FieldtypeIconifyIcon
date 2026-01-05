@@ -49,6 +49,10 @@ class FieldtypeIconifyIcon extends Fieldtype {
 		if(!is_file($path)) {
 			$iii->downloadIcon($value);
 		}
+		// Remove XML declaration for inline SVG
+		$svg = $this->wire()->files->fileGetContents($path);
+		$svg = preg_replace('/<\?xml.*?\?>\s*/i', '', $svg);
+
 		// Return the icon data
 		$data = [
 			'raw' => $value,
@@ -56,7 +60,7 @@ class FieldtypeIconifyIcon extends Fieldtype {
 			'name' => $setAndName['name'],
 			'path' => $path,
 			'url' => $localBaseUrl . $setAndName['set'] . '/' . $setAndName['name'] . '.svg',
-			'svg' => $this->wire()->files->fileGetContents($path),
+			'svg' => $svg,
 		];
 		return WireData($data);
 	}

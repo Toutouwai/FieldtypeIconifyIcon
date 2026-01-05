@@ -47,7 +47,7 @@ The unformatted value of a IconifyIcon field is the raw database value. Normally
 
 Example of object properties:
 
-![Object properties](https://github.com/user-attachments/assets/b7756777-30ec-4e4c-8842-277084c9494f)
+![Object properties](https://github.com/user-attachments/assets/a020a281-c09f-4700-8d4e-d068ac817a86)
 
 # Using Iconify icons in the ProcessWire admin
 
